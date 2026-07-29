@@ -54,9 +54,9 @@ export function HeroSection({
     <section className="relative w-full py-16 md:py-28 flex justify-center items-center overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50/50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 border-b border-border/40 bg-dot-pattern">
       
       {/* Dynamic Background Ambient Blobs */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-gradient-to-tr from-accent/15 to-orange-400/10 blur-3xl rounded-full pointer-events-none animate-blob" />
-      <div className="absolute bottom-10 right-10 w-[350px] h-[250px] bg-gradient-to-br from-indigo-500/10 to-accent/15 blur-2xl rounded-full pointer-events-none animate-blob-reverse" />
-      <div className="absolute top-10 left-10 w-[300px] h-[200px] bg-gradient-to-br from-amber-500/10 to-accent/10 blur-2xl rounded-full pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] h-[280px] bg-gradient-to-tr from-accent/15 to-orange-400/10 blur-2xl rounded-full pointer-events-none animate-blob transform-gpu" />
+      <div className="absolute bottom-10 right-10 w-[320px] h-[220px] bg-gradient-to-br from-indigo-500/10 to-accent/15 blur-2xl rounded-full pointer-events-none animate-blob-reverse transform-gpu" />
+      <div className="absolute top-10 left-10 w-[280px] h-[180px] bg-gradient-to-br from-amber-500/10 to-accent/10 blur-2xl rounded-full pointer-events-none transform-gpu" />
 
       <Container className="relative z-10">
         <div className={`grid grid-cols-1 ${visual ? "lg:grid-cols-12" : ""} gap-12 lg:gap-8 items-center max-w-6xl mx-auto`}>

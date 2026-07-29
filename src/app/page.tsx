@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import Image from "next/image"
 import { motion } from "framer-motion"
 import { HeroSection } from "@/components/common/HeroSection"
 import { SectionHeading } from "@/components/common/SectionHeading"
@@ -23,23 +24,23 @@ import {
 } from "lucide-react"
 
 export default function Home() {
-  // Ecosystem Visual for Hero with Framer Motion interaction
-  const visualEcosystem = (
-    <div className="relative p-8 w-full max-w-[390px] glass-card rounded-3xl border border-border/80 shadow-2xl shadow-accent/5 overflow-hidden">
+  // Ecosystem Visual for Hero with Framer Motion interaction (Memoized to prevent re-renders)
+  const visualEcosystem = React.useMemo(() => (
+    <div className="relative p-8 w-full max-w-[390px] glass-card rounded-3xl border border-border/80 shadow-2xl shadow-accent/10 overflow-hidden backdrop-blur-xl transform-gpu">
       {/* Ambient background glow inside Ecosystem card */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-accent/20 rounded-full blur-2xl pointer-events-none animate-pulse-glow" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-gradient-to-tr from-accent/20 via-orange-400/15 to-transparent rounded-full blur-2xl pointer-events-none animate-pulse-glow" />
 
       {/* Animated Connector lines */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-0.5 h-[210px] bg-gradient-to-b from-slate-200 via-accent/40 to-slate-200 dark:from-slate-800 dark:via-accent/40 dark:to-slate-800" />
-        <div className="h-0.5 w-[210px] bg-gradient-to-r from-slate-200 via-accent/40 to-slate-200 dark:from-slate-800 dark:via-accent/40 dark:to-slate-800 absolute" />
+        <div className="w-0.5 h-[210px] bg-gradient-to-b from-slate-300/60 via-accent/60 to-slate-300/60 dark:from-slate-700/60 dark:via-accent/60 dark:to-slate-700/60" />
+        <div className="h-0.5 w-[210px] bg-gradient-to-r from-slate-300/60 via-accent/60 to-slate-300/60 dark:from-slate-700/60 dark:via-accent/60 dark:to-slate-700/60 absolute" />
       </div>
 
       {/* Central Catalyst Node */}
       <motion.div 
         whileHover={{ scale: 1.12, rotate: 5 }}
         transition={{ type: "spring", stiffness: 400, damping: 15 }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-accent to-orange-600 text-white shadow-xl shadow-accent/40 border border-white/30 cursor-pointer"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-accent via-orange-500 to-amber-500 text-white shadow-xl shadow-accent/40 border border-white/40 cursor-pointer"
       >
         <Sparkles className="size-8 animate-pulse" />
       </motion.div>
@@ -48,10 +49,10 @@ export default function Home() {
       <div className="grid grid-cols-2 gap-x-20 gap-y-24 relative z-0">
         <motion.div 
           whileHover={{ scale: 1.08, y: -4 }}
-          transition={{ type: "spring", stiffness: 300 }}
+          transition={{ type: "spring", stiffness: 350, damping: 15 }}
           className="flex flex-col items-center group cursor-pointer"
         >
-          <div className="flex h-13 w-13 items-center justify-center rounded-2xl bg-slate-50 border border-border/80 shadow-md group-hover:bg-accent group-hover:border-accent group-hover:text-white dark:bg-slate-800 transition-all duration-300">
+          <div className="flex h-13 w-13 items-center justify-center rounded-2xl bg-white border border-border/80 shadow-md group-hover:bg-accent group-hover:border-accent group-hover:text-white dark:bg-slate-800 group-hover:shadow-lg group-hover:shadow-accent/20 transition-all duration-300">
             <Users className="size-5 text-accent group-hover:text-white transition-colors" />
           </div>
           <span className="mt-2.5 text-xs font-extrabold text-foreground group-hover:text-accent transition-colors">Students</span>
@@ -59,10 +60,10 @@ export default function Home() {
 
         <motion.div 
           whileHover={{ scale: 1.08, y: -4 }}
-          transition={{ type: "spring", stiffness: 300 }}
+          transition={{ type: "spring", stiffness: 350, damping: 15 }}
           className="flex flex-col items-center group cursor-pointer"
         >
-          <div className="flex h-13 w-13 items-center justify-center rounded-2xl bg-slate-50 border border-border/80 shadow-md group-hover:bg-accent group-hover:border-accent group-hover:text-white dark:bg-slate-800 transition-all duration-300">
+          <div className="flex h-13 w-13 items-center justify-center rounded-2xl bg-white border border-border/80 shadow-md group-hover:bg-accent group-hover:border-accent group-hover:text-white dark:bg-slate-800 group-hover:shadow-lg group-hover:shadow-accent/20 transition-all duration-300">
             <GraduationCap className="size-5 text-accent group-hover:text-white transition-colors" />
           </div>
           <span className="mt-2.5 text-xs font-extrabold text-foreground group-hover:text-accent transition-colors">Mentors</span>
@@ -70,10 +71,10 @@ export default function Home() {
 
         <motion.div 
           whileHover={{ scale: 1.08, y: -4 }}
-          transition={{ type: "spring", stiffness: 300 }}
+          transition={{ type: "spring", stiffness: 350, damping: 15 }}
           className="flex flex-col items-center group cursor-pointer"
         >
-          <div className="flex h-13 w-13 items-center justify-center rounded-2xl bg-slate-50 border border-border/80 shadow-md group-hover:bg-accent group-hover:border-accent group-hover:text-white dark:bg-slate-800 transition-all duration-300">
+          <div className="flex h-13 w-13 items-center justify-center rounded-2xl bg-white border border-border/80 shadow-md group-hover:bg-accent group-hover:border-accent group-hover:text-white dark:bg-slate-800 group-hover:shadow-lg group-hover:shadow-accent/20 transition-all duration-300">
             <Briefcase className="size-5 text-accent group-hover:text-white transition-colors" />
           </div>
           <span className="mt-2.5 text-xs font-extrabold text-foreground group-hover:text-accent transition-colors">Employers</span>
@@ -81,17 +82,17 @@ export default function Home() {
 
         <motion.div 
           whileHover={{ scale: 1.08, y: -4 }}
-          transition={{ type: "spring", stiffness: 300 }}
+          transition={{ type: "spring", stiffness: 350, damping: 15 }}
           className="flex flex-col items-center group cursor-pointer"
         >
-          <div className="flex h-13 w-13 items-center justify-center rounded-2xl bg-slate-50 border border-border/80 shadow-md group-hover:bg-accent group-hover:border-accent group-hover:text-white dark:bg-slate-800 transition-all duration-300">
+          <div className="flex h-13 w-13 items-center justify-center rounded-2xl bg-white border border-border/80 shadow-md group-hover:bg-accent group-hover:border-accent group-hover:text-white dark:bg-slate-800 group-hover:shadow-lg group-hover:shadow-accent/20 transition-all duration-300">
             <School className="size-5 text-accent group-hover:text-white transition-colors" />
           </div>
           <span className="mt-2.5 text-xs font-extrabold text-foreground group-hover:text-accent transition-colors">Department</span>
         </motion.div>
       </div>
     </div>
-  )
+  ), [])
 
   // Roles details list
   const studentItems = ["Build project portfolios", "Apply to coordinated internships", "Receive mentor assessments"]
@@ -225,7 +226,7 @@ export default function Home() {
       {/* 2. Platform Users Section */}
       <section className="relative w-full py-20 md:py-28 border-b border-border/40 flex justify-center items-center overflow-hidden">
         {/* Subtle background ambient blob */}
-        <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 left-0 -translate-y-1/2 w-80 h-80 bg-accent/5 rounded-full blur-2xl pointer-events-none transform-gpu" />
 
         <Container className="relative z-10">
           <div className="space-y-14">
@@ -235,10 +236,10 @@ export default function Home() {
               badge="Ecosystem Roles"
             />
             <motion.div 
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto"
             >
               <UserRoleCard 
@@ -278,10 +279,10 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* NEW: 3. Visual Experience & Real Impact Gallery Section */}
+      {/* 3. Visual Experience & Real Impact Gallery Section */}
       <section className="relative w-full py-20 md:py-28 border-b border-border/40 bg-slate-900 text-white overflow-hidden bg-dot-pattern">
-        <div className="absolute top-1/3 left-1/4 w-[400px] h-[250px] bg-accent/10 blur-3xl rounded-full pointer-events-none animate-blob" />
-        <div className="absolute bottom-10 right-10 w-[300px] h-[200px] bg-indigo-500/10 blur-2xl rounded-full pointer-events-none animate-blob-reverse" />
+        <div className="absolute top-1/3 left-1/4 w-[350px] h-[220px] bg-accent/10 blur-2xl rounded-full pointer-events-none animate-blob transform-gpu" />
+        <div className="absolute bottom-10 right-10 w-[280px] h-[180px] bg-indigo-500/10 blur-2xl rounded-full pointer-events-none animate-blob-reverse transform-gpu" />
 
         <Container className="relative z-10">
           <div className="space-y-14">
@@ -299,27 +300,27 @@ export default function Home() {
             </div>
 
             <motion.div 
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
               className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
             >
               {showcasePhotos.map((item) => (
                 <motion.div 
                   key={item.title}
-                  whileHover={{ y: -8 }}
+                  whileHover={{ y: -6 }}
                   transition={{ duration: 0.25 }}
-                  className="group relative rounded-3xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm shadow-2xl flex flex-col justify-between"
+                  className="group relative rounded-3xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm shadow-2xl flex flex-col justify-between transform-gpu"
                 >
-                  {/* Photo Container */}
+                  {/* Photo Container with Next.js Image optimization */}
                   <div className="relative h-56 w-full overflow-hidden bg-slate-800">
-                    <img 
+                    <Image 
                       src={item.image} 
                       alt={item.title}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
                     <span className="absolute top-4 left-4 text-[10px] font-extrabold uppercase tracking-widest text-accent bg-slate-950/80 backdrop-blur-md border border-accent/30 px-3 py-1 rounded-full">
@@ -351,7 +352,7 @@ export default function Home() {
       {/* 4. Core Features Section */}
       <section className="relative w-full py-20 md:py-28 border-b border-border/40 bg-slate-50/60 dark:bg-slate-900/40 flex justify-center items-center overflow-hidden bg-dot-pattern">
         {/* Subtle background ambient blob */}
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-80 h-80 bg-indigo-500/5 rounded-full blur-2xl pointer-events-none transform-gpu" />
 
         <Container className="relative z-10">
           <div className="space-y-14">
@@ -361,10 +362,10 @@ export default function Home() {
               badge="Platform Core"
             />
             <motion.div 
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
             >
               {features.map((feat) => (
@@ -386,7 +387,7 @@ export default function Home() {
       {/* 5. Impact Section */}
       <section className="relative w-full py-20 md:py-28 border-b border-border/40 flex justify-center items-center overflow-hidden">
         {/* Background ambient blob */}
-        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-80 h-80 bg-emerald-500/5 rounded-full blur-2xl pointer-events-none transform-gpu" />
 
         <Container className="relative z-10">
           <div className="space-y-14">
@@ -396,10 +397,10 @@ export default function Home() {
               badge="Outcome Metrics"
             />
             <motion.div 
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto"
             >
               {metrics.map((metric) => (

@@ -110,49 +110,73 @@
 
 @keyframes float-blob {
   0%, 100% {
-    transform: translateY(0px) scale(1);
+    transform: translate3d(0, 0px, 0) scale(1);
   }
   50% {
-    transform: translateY(-20px) scale(1.08);
+    transform: translate3d(0, -16px, 0) scale(1.05);
   }
 }
 
 @keyframes float-blob-reverse {
   0%, 100% {
-    transform: translateY(0px) scale(1);
+    transform: translate3d(0, 0px, 0) scale(1);
   }
   50% {
-    transform: translateY(20px) scale(0.95);
+    transform: translate3d(0, 16px, 0) scale(0.96);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translate3d(0, 0px, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, -8px, 0) rotate(2deg);
   }
 }
 
 @keyframes pulse-glow {
   0%, 100% {
     opacity: 0.4;
-    transform: scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
   }
   50% {
-    opacity: 0.8;
-    transform: scale(1.05);
+    opacity: 0.75;
+    transform: translate3d(0, 0, 0) scale(1.04);
   }
 }
 
 .animate-blob {
-  animation: float-blob 12s ease-in-out infinite;
+  animation: float-blob 14s ease-in-out infinite;
   will-change: transform;
-  transform: translateZ(0);
+  transform: translate3d(0, 0, 0);
 }
 
 .animate-blob-reverse {
-  animation: float-blob-reverse 15s ease-in-out infinite;
+  animation: float-blob-reverse 16s ease-in-out infinite;
   will-change: transform;
-  transform: translateZ(0);
+  transform: translate3d(0, 0, 0);
+}
+
+.animate-float-slow {
+  animation: float-slow 10s ease-in-out infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
 }
 
 .animate-pulse-glow {
-  animation: pulse-glow 6s ease-in-out infinite;
+  animation: pulse-glow 7s ease-in-out infinite;
   will-change: transform, opacity;
-  transform: translateZ(0);
+  transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-blob,
+  .animate-blob-reverse,
+  .animate-float-slow,
+  .animate-pulse-glow {
+    animation: none !important;
+  }
 }
 
 /* Subtle dot grid pattern */
@@ -166,17 +190,32 @@
   background-size: 24px 24px;
 }
 
-/* Glassmorphism background */
+/* Subtle grid line pattern */
+.bg-grid-pattern {
+  background-image: linear-gradient(to right, rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.dark .bg-grid-pattern {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Glassmorphism background optimized for GPU rendering */
 .glass-card {
   background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(226, 232, 240, 0.8);
+  transform: translateZ(0);
 }
 
 .dark .glass-card {
   background: rgba(15, 23, 42, 0.88);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(51, 65, 85, 0.8);
+  transform: translateZ(0);
 }
